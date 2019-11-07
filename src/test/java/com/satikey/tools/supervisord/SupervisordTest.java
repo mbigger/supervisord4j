@@ -17,7 +17,6 @@ import java.util.Properties;
  *
  * @author <Authors name>
  * @version 1.0
- * @since <pre>���� 31, 2016</pre>
  */
 @FixMethodOrder(MethodSorters.JVM)
 public class SupervisordTest {
