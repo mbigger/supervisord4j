@@ -148,7 +148,7 @@ public class SupervisordTest {
     @Test
     public void testStartProcess() throws Exception {
         LOGGER.info("start process");
-        boolean result = supervisord.startProcess("cat1", false);
+        boolean result = supervisord.startProcess("UsasComm", false);
         LOGGER.info("result:{}", result);
     }
 
@@ -176,7 +176,7 @@ public class SupervisordTest {
     @Test
     public void testStopProcess() throws Exception {
         LOGGER.info("stop process");
-        boolean result = supervisord.stopProcess("cat1", false);
+        boolean result = supervisord.stopProcess("UsasComm", false);
         LOGGER.info("result:{}", result);
     }
 

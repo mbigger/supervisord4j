@@ -1,19 +1,14 @@
 package com.satikey.tools.supervisord;
 
+import com.satikey.tools.supervisord.exceptions.SupervisordException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.Map;
-
-import com.satikey.tools.supervisord.exceptions.SupervisordException;
 
 /**
  * @author Lei Duan(satifanie@gmail.com) .
@@ -132,8 +127,12 @@ public class Supervisord {
      */
     public String readLog(int offset, int length)
             throws SupervisordException {
-        if (offset < 0) offset = 0;
-        if (length < 0) length = 0;
+        if (offset < 0) {
+            offset = 0;
+        }
+        if (length < 0) {
+            length = 0;
+        }
         return (String) new SimpleXMLRPC().call(buildFullMethodCall(Constants._READ_LOG), offset, length);
     }
 
@@ -390,7 +389,7 @@ public class Supervisord {
     /**
      * Provides a more efficient way to tail the (stdout) log than readProcessStdoutLog(). Use
      * readProcessStdoutLog() to read chunks and tailProcessStdoutLog() to tail.
-     *
+     * <p>
      * Requests (length) bytes from the (name)’s log, starting at (offset). If the total log size is
      * greater than (offset + length), the overflow flag is set and the (offset) is automatically
      * increased to position the buffer at the end of the log. If less than (length) bytes are
@@ -410,7 +409,7 @@ public class Supervisord {
     /**
      * Provides a more efficient way to tail the (stderr) log than readProcessStderrLog(). Use
      * readProcessStderrLog() to read chunks and tailProcessStderrLog() to tail.
-     *
+     * <p>
      * Requests (length) bytes from the (name)’s log, starting at (offset). If the total log size is
      * greater than (offset + length), the overflow flag is set and the (offset) is automatically
      * increased to position the buffer at the end of the log. If less than (length) bytes are
@@ -546,8 +545,9 @@ public class Supervisord {
                 LOGGER.error("HTTP ERR:{}", e.getMessage(), e.getCause());
             } finally {
 
-                if (connection != null)
+                if (connection != null) {
                     connection.disconnect();
+                }
 
             }
             return null;

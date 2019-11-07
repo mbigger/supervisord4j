@@ -26,23 +26,6 @@ public abstract class SupervisordException extends Exception {
         }
     }
 
-    public static class UnknownMethodException extends SupervisordException {
-        public UnknownMethodException(){
-            super(Code.UNKNOWN_METHOD);
-        }
-    }
-    public static class AlreadyStartedException extends SupervisordException {
-        public AlreadyStartedException() {
-            super(Code.ALREADY_STARTED);
-        }
-    }
-
-    public static class NotRunningException extends SupervisordException {
-        public NotRunningException() {
-            super(Code.NOT_RUNNING);
-        }
-    }
-
     public static enum Code {
 
         /**
@@ -56,23 +39,15 @@ public abstract class SupervisordException extends Exception {
                 = new HashMap<Integer, Code>();
 
         static {
-            for (Code c : EnumSet.allOf(Code.class))
+            for (Code c : EnumSet.allOf(Code.class)) {
                 lookup.put(c.code, c);
+            }
         }
 
         private final int code;
 
         Code(int code) {
             this.code = code;
-        }
-
-        /**
-         * Get the int value for a particular Code.
-         *
-         * @return error code as integer
-         */
-        public int intValue() {
-            return code;
         }
 
         /**
@@ -83,6 +58,33 @@ public abstract class SupervisordException extends Exception {
          */
         public static Code get(int code) {
             return lookup.get(code);
+        }
+
+        /**
+         * Get the int value for a particular Code.
+         *
+         * @return error code as integer
+         */
+        public int intValue() {
+            return code;
+        }
+    }
+
+    public static class UnknownMethodException extends SupervisordException {
+        public UnknownMethodException() {
+            super(Code.UNKNOWN_METHOD);
+        }
+    }
+
+    public static class AlreadyStartedException extends SupervisordException {
+        public AlreadyStartedException() {
+            super(Code.ALREADY_STARTED);
+        }
+    }
+
+    public static class NotRunningException extends SupervisordException {
+        public NotRunningException() {
+            super(Code.NOT_RUNNING);
         }
     }
 
