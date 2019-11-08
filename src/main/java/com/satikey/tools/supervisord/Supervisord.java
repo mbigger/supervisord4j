@@ -201,6 +201,16 @@ public class Supervisord {
         return (Boolean) new SimpleXMLRPC().call(buildFullMethodCall(Constants._START_PROCESS), processName, waitToStart);
     }
 
+    public boolean configProcess(String processName, boolean autoStart, boolean autoRestart, int startRetries)
+            throws SupervisordException {
+        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_CONFIG_PROCESS, processName, autoStart, autoRestart, startRetries);
+    }
+
+    public boolean deleteProcess(String processName)
+            throws SupervisordException {
+        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_DELETE_PROCESS, processName);
+    }
+
     /**
      * Start all processes listed in the configuration file
      *
