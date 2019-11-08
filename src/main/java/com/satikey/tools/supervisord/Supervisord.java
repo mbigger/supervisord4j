@@ -201,11 +201,30 @@ public class Supervisord {
         return (Boolean) new SimpleXMLRPC().call(buildFullMethodCall(Constants._START_PROCESS), processName, waitToStart);
     }
 
+    /**
+     * Config a process
+     * if process name does not exist，create a new config
+     * if process already exist，update the items
+     *
+     * @param processName  name of process
+     * @param autoStart    auto start with supervisor
+     * @param autoRestart  restart with exception
+     * @param startRetries the max times of retry
+     * @return boolean result Always true unless error
+     * @throws SupervisordException
+     */
     public boolean configProcess(String processName, boolean autoStart, boolean autoRestart, int startRetries)
             throws SupervisordException {
         return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_CONFIG_PROCESS, processName, autoStart, autoRestart, startRetries);
     }
 
+    /**
+     * delete the process
+     *
+     * @param processName name of process
+     * @return boolean result Always true unless error
+     * @throws SupervisordException
+     */
     public boolean deleteProcess(String processName)
             throws SupervisordException {
         return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_DELETE_PROCESS, processName);
