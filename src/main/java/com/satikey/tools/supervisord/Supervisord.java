@@ -202,7 +202,7 @@ public class Supervisord {
     }
 
     /**
-     * Config a process
+     * Add a process
      * if process name does not exist，create a new config
      * if process already exist，update the items
      *
@@ -213,9 +213,9 @@ public class Supervisord {
      * @return boolean result Always true unless error
      * @throws SupervisordException
      */
-    public boolean configProcess(String processName, boolean autoStart, boolean autoRestart, int startRetries)
+    public boolean addProcess(String processName, boolean autoStart, boolean autoRestart, int startRetries)
             throws SupervisordException {
-        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_CONFIG_PROCESS, processName, autoStart, autoRestart, startRetries);
+        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_ADD_PROCESS, processName, autoStart, autoRestart, startRetries);
     }
 
     /**
