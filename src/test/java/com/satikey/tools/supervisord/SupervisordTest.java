@@ -1,5 +1,6 @@
 package com.satikey.tools.supervisord;
 
+import com.satikey.tools.supervisord.exceptions.SupervisordException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -397,6 +398,16 @@ try {
         for (Object item : datas) {
             LOGGER.info("{}.{}", ++num, item);
         }
+    }
+
+    @Test
+    public void testAddProcess() throws SupervisordException {
+        supervisord.addProcess("epower", "processName", "/opt/epower/protocols/tt", "java -jar -dPort 456 /opt/epower/protocols/tt/456.jar", false, false, 3);
+    }
+
+    @Test
+    public void testDeleteProcess() throws SupervisordException {
+        supervisord.deleteProcess("epower", "processName");
     }
 
 } 

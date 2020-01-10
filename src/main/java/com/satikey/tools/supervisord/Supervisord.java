@@ -206,28 +206,32 @@ public class Supervisord {
      * if process name does not exist，create a new config
      * if process already exist，update the items
      *
+     * @param programType type of program
      * @param processName  name of process
+     * @param commandDirectory dir of program
+     * @param runCommand command params
      * @param autoStart    auto start with supervisor
      * @param autoRestart  restart with exception
      * @param startRetries the max times of retry
      * @return boolean result Always true unless error
      * @throws SupervisordException
      */
-    public boolean addProcess(String processName, boolean autoStart, boolean autoRestart, int startRetries)
+    public boolean addProcess(String programType, String processName, String commandDirectory, String runCommand, boolean autoStart, boolean autoRestart, int startRetries)
             throws SupervisordException {
-        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_ADD_PROCESS, processName, autoStart, autoRestart, startRetries);
+        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_ADD_PROCESS, programType, processName, commandDirectory,  runCommand, autoStart, autoRestart, startRetries);
     }
 
     /**
      * delete the process
      *
+     * @param programType type of program
      * @param processName name of process
      * @return boolean result Always true unless error
      * @throws SupervisordException
      */
-    public boolean deleteProcess(String processName)
+    public boolean deleteProcess(String programType, String processName)
             throws SupervisordException {
-        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_DELETE_PROCESS, processName);
+        return (Boolean) new SimpleXMLRPC().call(Constants._EXTEND_DELETE_PROCESS, programType, processName);
     }
 
     /**

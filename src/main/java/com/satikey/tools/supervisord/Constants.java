@@ -58,6 +58,6 @@ public interface Constants {
     String _SIGNAL_PROCESSES_GROUP = "signalProcessGroup";
     String _SIGNAL_ALL_PROCESSES = "signalAllProcesses";
 
-    String _EXTEND_ADD_PROCESS = "extend.addProcess";
-    String _EXTEND_DELETE_PROCESS = "extend.deleteProcess";
+    String _EXTEND_ADD_PROCESS = "another.addProcess";
+    String _EXTEND_DELETE_PROCESS = "another.deleteProcess";
 }
