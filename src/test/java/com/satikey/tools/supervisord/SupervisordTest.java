@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -93,7 +94,7 @@ public class SupervisordTest {
     @Test
     public void testShutdown() throws Exception {
         LOGGER.info("testing shutdown");
-        boolean result = supervisord.shutdown();
+        boolean result = supervisord._shutdown();
         LOGGER.info("shutdown result:{}", result);
     }
 
@@ -139,7 +140,17 @@ public class SupervisordTest {
      */
     @Test
     public void testGetAllProcessInfo() throws Exception {
-//TODO: Test goes here... 
+        Object[] infos = supervisord.getAllProcessInfo();
+        System.out.println(infos.length);
+        for (Object o : infos) {
+            HashMap<String, String> hashMap = (HashMap) o;
+            String processName = hashMap.get("name");
+            String description = hashMap.get("description");
+            String statename = hashMap.get("statename");
+            System.out.println(processName );
+            System.out.println(description);
+            System.out.println(statename);
+        }
     }
 
     /**
@@ -390,7 +401,7 @@ try {
     /**
      * Method: listMethods()
      */
-//    @Test
+    @Test
     public void testListMethods() throws Exception {
         LOGGER.info("testing listMethods:");
         Object[] datas = supervisord.listMethods();
@@ -402,7 +413,7 @@ try {
 
     @Test
     public void testAddProcess() throws SupervisordException {
-        supervisord.addProcess("epower", "processName", "/opt/epower/protocols/tt", "java -jar -dPort 456 /opt/epower/protocols/tt/456.jar", false, false, 3);
+        supervisord.addProcess("epower", "processName", "/opt/epower/protocols/tt", "java -jar -dPort 456", false, false, 3);
     }
 
     @Test
