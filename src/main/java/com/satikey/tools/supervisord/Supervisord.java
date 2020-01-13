@@ -151,7 +151,7 @@ public class Supervisord {
      *
      * @return boolean result always returns True unless error
      */
-    public boolean _shutdown()
+    public boolean shutdown()
             throws SupervisordException {
         return (Boolean) new SimpleXMLRPC().call(buildFullMethodCall(Constants._SHUTDOWN));
     }

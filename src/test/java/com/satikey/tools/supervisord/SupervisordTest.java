@@ -94,7 +94,7 @@ public class SupervisordTest {
     @Test
     public void testShutdown() throws Exception {
         LOGGER.info("testing shutdown");
-        boolean result = supervisord._shutdown();
+        boolean result = supervisord.shutdown();
         LOGGER.info("shutdown result:{}", result);
     }
 
